@@ -5,6 +5,7 @@
   become_method: sudo
   vars:
     state: "present"
+    php_version: "5.4.16"
   tasks:
   - name: Manage packages 
     ansible.builtin.package:
@@ -24,4 +25,9 @@
   - name: Manage packages 
     ansible.builtin.package:
       name: elinks
+      state: "{{ state }}"   
+
+  - name: Manage packages 
+    ansible.builtin.package:
+      name: php-5.4.16
       state: "{{ state }}"   
