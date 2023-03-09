@@ -11,6 +11,11 @@
       dest: /tmp/
       mode: '0440'
 
+  - name: Unarchive a file that is already on the remote machine
+    ansible.builtin.unarchive:
+      src: /tmp/wordpress-6.1.1.tar.gz
+      dest: /tmp/
+      remote_src: yes
 
 
 
