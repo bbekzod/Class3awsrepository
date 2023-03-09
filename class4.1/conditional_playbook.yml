@@ -1,0 +1,21 @@
+---
+- name: Test playbook to run 
+  hosts: all
+  user: ec2-user
+  become: true
+  become_method: sudo
+  tasks:
+  - name: Install multiple package on Amazon
+    when: ansible_facts['distribution'] == "Amazon"
+    ansible.builtin.yum:
+      name: httpd
+      state: present
+
+  - name: Install multiple package on Ubuntu
+    when: ansible_facts['distribution'] == "Ubuntu"
+    ansible.builtin.apt:
+      name: apache2
+      state: present    
+      
+
+# ansible-playbook  -i ../setup/inventory  conditional_playbook.yml

@@ -1,0 +1,19 @@
+---
+- name: Test playbook to run 
+  hosts: all
+  user: ec2-user
+  become: true
+  become_method: sudo
+  tasks:
+  - name: Install multiple package on Amazon
+    when: 
+      - ansible_facts['distribution_version'] == "2"
+      - ansible_facts['distribution'] == "Amazon"
+    ansible.builtin.package:
+      name: telnet
+      state: latest
+    ignore_errors: true
+
+ 
+
+# ansible-playbook  -i ../setup/inventory  conditional_playbook.yml
